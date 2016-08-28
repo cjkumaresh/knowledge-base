@@ -1,4 +1,6 @@
-# knowledge-base - ##WIP
+# knowledge-base 
+>WIP
+
 To store my knowledge as and when I learn something new
 
 ## why this project ?
