@@ -13,6 +13,5 @@ function bubbleSort(list) {
     return list;
 }
 
-var unsorted_list = [ 4, 7, 6, 9, 8, 1, 3, 5, 0, 2 ];
-
+var unsorted_list = [4, 7, 6, 9, 8, 1, 3, 5, 0, 2];
 bubbleSort(unsorted_list);
