@@ -31,3 +31,5 @@ class Cat extends Animal {
     this.name = "kitty";
   }
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
