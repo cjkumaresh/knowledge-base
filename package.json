@@ -1,0 +1,22 @@
+{
+  "name": "knowledge-base",
+  "version": "1.0.0",
+  "description": "my personal knowledge base",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjkumaresh/knowledge-base.git"
+  },
+  "author": "cjkumaresh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjkumaresh/knowledge-base/issues"
+  },
+  "homepage": "https://github.com/cjkumaresh/knowledge-base#readme",
+  "devDependencies": {
+    "jasmine": "^3.3.1"
+  }
+}
