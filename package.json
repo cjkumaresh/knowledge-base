@@ -4,7 +4,7 @@
   "description": "my personal knowledge base",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/cjkumaresh/knowledge-base#readme",
   "devDependencies": {
-    "jasmine": "^3.3.1"
+    "@babel/preset-env": "^7.3.1",
+    "@types/jest": "^24.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0"
   }
 }
