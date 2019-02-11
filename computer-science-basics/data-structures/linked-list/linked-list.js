@@ -59,6 +59,13 @@ export default class LinkedList {
     }
 
     delete(value) {
+        let currentNode = this.head;
+
+        while (currentNode) {
+            if (this.compare.equal(currentNode.value, value)) {
+                return currentNode;
+            }
+        }
         return this;
     }
 
