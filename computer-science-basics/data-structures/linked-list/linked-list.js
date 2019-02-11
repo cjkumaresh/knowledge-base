@@ -84,10 +84,43 @@ export default class LinkedList {
     }
 
     deleteHead() {
-        return this;
+        if (!this.head) {
+            return null;
+        }
+
+        const deletedNode = this.head;
+
+        if (this.head.next) {
+            this.head = this.head.next;
+        } else { // no tail
+            this.head = null;
+            this.tail = null;
+        }
+
+        return deletedNode;
     }
 
     deleteTail() {
-        return this;
+        const deletedNode = this.tail;
+
+        if (this.compare.equal(this.head, this.tail)) {
+            this.head = null;
+            this.tail = null;
+            return deletedNode;
+        }
+
+        let currentNode = this.head;
+
+        while(currentNode.next) {
+            if (!currentNode.next.next) {
+                currentNode.next = null;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+
+        this.tail = currentNode;
+
+        return deletedNode;
     }
 }
