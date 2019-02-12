@@ -1,6 +1,6 @@
 export default class Comparator {
     constructor(comparatorFunction) {
-        this.compare = this.comparatorFunction || Comparator.ComparatorFunction;
+        this.compare = comparatorFunction || Comparator.ComparatorFunction;
     }
 
     static ComparatorFunction (a, b){

@@ -154,19 +154,19 @@ describe('LinkedList', () => {
   it('should find node by value', () => {
     const linkedList = new LinkedList();
 
-    expect(linkedList.findByValue(5)).toBeNull();
+    expect(linkedList.find({value: 5})).toBeNull();
 
     linkedList.append(1);
-    expect(linkedList.findByValue(1)).toBeDefined();
+    expect(linkedList.find({value: 1})).toBeDefined();
 
     linkedList
       .append(2)
       .append(3);
 
-    const node = linkedList.findByValue(2);
+    const node = linkedList.find({value: 2});
 
     expect(node.value).toBe(2);
-    expect(linkedList.findByValue(5)).toBeNull();
+    expect(linkedList.find({value: 5})).toBeNull();
   });
 
   it('should find node by callback', () => {
