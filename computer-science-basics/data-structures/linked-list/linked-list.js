@@ -59,14 +59,28 @@ export default class LinkedList {
     }
 
     delete(value) {
+        if (!this.head) {
+            return null;
+        }
+
+        let deletedNode = null;
+        if(this.head.value === value) {
+            deletedNode = this.head;
+            this.head = this.head.next;
+            return deletedNode;
+        }
+
         let currentNode = this.head;
 
-        while (currentNode) {
-            if (this.compare.equal(currentNode.value, value)) {
-                return currentNode;
+        while (currentNode.next) {
+            if (this.compare.equal(currentNode.next.value, value)) {
+                deletedNode = currentNode.next;
+                currentNode.next = currentNode.next.next;
+                return deletedNode; 
             }
+            currentNode = currentNode.next;
         }
-        return this;
+        return null;
     }
 
     findByValue(value) {
