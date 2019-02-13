@@ -162,13 +162,14 @@ export default class LinkedList {
         let nextNode = currentNode.next;
 
         while(currentNode) {
-            nextNode = currentNode.next;
+            // 1 -> 2 -> 3 ->
+            // Assume currentNode = 2. now
+            nextNode = currentNode.next; // store the next node (3), so nextNode = 3
 
-            currentNode.next = previousNode;
+            currentNode.next = previousNode; // 1
 
-
-            previousNode = currentNode;
-            currentNode = nextNode;
+            previousNode = currentNode; // update previousNode , so previousNode = 2
+            currentNode = nextNode; // update currentNode for the iteration; so currentNode = 2
         }
         
         this.tail = this.head;
