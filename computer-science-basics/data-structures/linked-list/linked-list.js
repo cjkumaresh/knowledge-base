@@ -154,4 +154,24 @@ export default class LinkedList {
 
         return deletedNode;
     }
+
+    reverse() {
+        let currentNode = this.head;
+
+        let previousNode = null;
+        let nextNode = currentNode.next;
+
+        while(currentNode) {
+            nextNode = currentNode.next;
+
+            currentNode.next = previousNode;
+
+
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        
+        this.tail = this.head;
+        this.head = previousNode;
+    }
 }
