@@ -22,4 +22,16 @@ export default class Comparator {
     lessThan(a, b) {
         return this.compare(a, b) < 0;
     }
+
+    lessThanOrEqual(a, b) {
+        return this.lessThan(a, b) || this.equal(a, b);
+    }
+
+    greaterThanOrEqual(a, b) {
+        return this.greaterThan(a, b) || this.equal(a, b);
+    }
+
+    // reverse() {
+
+    // }
 }
