@@ -1,23 +1,26 @@
-function bubbleSort(list) {
-    var temp, i, SORT_REQUIRED = false, len = list.length;
-    for (i = 1; i <= len; i++) {
-        if (list[i] < list[i-1]) {
-            temp = list[i];
-            list[i] = list[i-1];
-            list[i-1] = temp;
-            SORT_REQUIRED = true
+import Sort from "../sort";
+
+export default class BubbleSort extends Sort {
+    sort(originalArray) {
+        let array = [...originalArray]; // clone it so that original array is unmodified
+
+        let swapped;
+        const arrLength = array.length;
+
+        for (let i = 0; i < arrLength; i++) {
+            swapped = false;
+
+            for (let j = 0; j < arrLength - i;j++) {
+                if (array[j+1] < array[j]) {
+                    [array[j], array[j+1]] = [array[j+1], array[j]]; //swap 
+                    swapped = true;
+                }
+            }
+
+            if (!swapped) { // sorting is completed
+                return array;
+            }
         }
     }
-    if (SORT_REQUIRED)
-        bubbleSort(list);
-    return list;
 }
 
-var unsorted_list = [4, 7, 6, 9, 8, 1, 3, 5, 0, 2];
-bubbleSort(unsorted_list);
-
-export default class BubbleSort {
-    constructor() {
-        
-    }
-}
