@@ -1,9 +1,10 @@
-import Comprator from "../../utils/comparator";
+import Comparator from "../../utils/comparator";
 
 export default class Sort {
     constructor(callbacks) {
         this.callbacks = Sort.initSortCallbacks(callbacks);
-        this.comparator = new Comprator(this.callbacks.compareCallback);
+        console.log(this.callbacks.compareCallback);
+        this.comparator = new Comparator(this.callbacks.compareCallback);
     }
 
     static initSortCallbacks(originalCallbacks) {
