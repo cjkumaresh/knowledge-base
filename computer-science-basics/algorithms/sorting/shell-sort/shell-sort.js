@@ -18,7 +18,7 @@ export default class ShellSort extends Sort {
                     }
 
                     gapShiftedIndex = currentIndex;
-                    currentIndex -= gap;
+                    currentIndex -= gap; // recursively we have to compare with the already sorted elements in the same gap interval
                 }
 
                 
