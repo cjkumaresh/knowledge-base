@@ -16,7 +16,7 @@ export default class ShellSort extends Sort {
                     if (this.comparator.lessThan(array[gapShiftedIndex], array[currentIndex])) {
                         [array[currentIndex], array[gapShiftedIndex]] = [array[gapShiftedIndex], array[currentIndex]];
                     }
-                    console.log("array in while loop", array);
+                    // console.log("array in while loop", array);
                     gapShiftedIndex = currentIndex;
                     currentIndex -= gap; // recursively we have to compare with the already sorted elements in the same gap interval
                 }
@@ -25,7 +25,7 @@ export default class ShellSort extends Sort {
             }
             gap = Math.floor(gap/2);
         }
-        console.log("final array", array);
+        // console.log("final array", array);
         return array;
     }
 
