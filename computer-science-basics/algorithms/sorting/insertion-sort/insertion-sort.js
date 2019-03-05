@@ -14,7 +14,6 @@ export default class InsertionSort extends Sort {
                 }
             }
         }
-        console.log(array);
         return array;
     }
 }

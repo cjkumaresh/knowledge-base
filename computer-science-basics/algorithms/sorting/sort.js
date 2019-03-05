@@ -3,7 +3,6 @@ import Comparator from "../../utils/comparator";
 export default class Sort {
     constructor(callbacks) {
         this.callbacks = Sort.initSortCallbacks(callbacks);
-        console.log(this.callbacks.compareCallback);
         this.comparator = new Comparator(this.callbacks.compareCallback);
     }
 

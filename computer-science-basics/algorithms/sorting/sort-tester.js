@@ -28,7 +28,6 @@ export class SortTester {
   static testSortWithCustomComparator(SortingClass) {
     const callbacks = {
       compareCallback: (a, b) => {
-        console.log(a, b);
         if (a.length === b.length) {
           return 0;
         }
@@ -37,8 +36,6 @@ export class SortTester {
     };
 
     const sorter = new SortingClass(callbacks);
-    console.log(sorter);
-    console.log(sorter.callbacks.compareCallback(1,2));
     expect(sorter.sort([''])).toEqual(['']);
     expect(sorter.sort(['a'])).toEqual(['a']);
     expect(sorter.sort(['aa', 'a'])).toEqual(['a', 'aa']);
