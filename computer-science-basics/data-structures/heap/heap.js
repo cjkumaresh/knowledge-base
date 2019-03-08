@@ -23,10 +23,17 @@ export default class Heap {
   }
 
   heapifyUp(index) {
-    const currentIndex = index || this.heapContainer.length - 1;
+    let currentIndex = index || this.heapContainer.length - 1;
 
-    while (this.hasParent(currentIndex) && !this.pairIsInCorrectOrder(this.getParentIndex(currentIndex), currentIndex)) {
-      [this.heapContainer[this.getParentIndex(currentIndex)], this.heapContainer[currentIndex]] = [this.heapContainer[currentIndex], this.heapContainer[this.getParentIndex[currentIndex]]];
+    while (this.hasParent(currentIndex)
+        && !this.pairIsInCorrectOrder(this.getParentIndex(currentIndex), currentIndex)) {
+      const parentIndex = this.getParentIndex(currentIndex);
+      this.swap(currentIndex, parentIndex);
+      currentIndex = parentIndex;
     }
+  }
+
+  swap(a, b) {
+    [this.heapContainer[a], this.heapContainer[b]] = [this.heapContainer[b], this.heapContainer[a]]; // swap
   }
 }
