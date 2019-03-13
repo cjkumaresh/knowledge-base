@@ -4,7 +4,7 @@ import Comparator from '../../../utils/comparator';
 describe('MinHeap', () => {
   it('should create an empty min heap', () => {
     const minHeap = new MinHeap();
-
+    console.log('onnu');
     expect(minHeap).toBeDefined();
     expect(minHeap.peek()).toBeNull();
     expect(minHeap.isEmpty()).toBe(true);
@@ -12,13 +12,14 @@ describe('MinHeap', () => {
 
   it('should add items to the heap and heapify it up', () => {
     const minHeap = new MinHeap();
-
+    console.log('rendu');
     minHeap.add(5);
     expect(minHeap.isEmpty()).toBe(false);
     expect(minHeap.peek()).toBe(5);
     expect(minHeap.toString()).toBe('5');
 
     minHeap.add(3);
+    console.log('testing mamu', minHeap.toString());
     expect(minHeap.peek()).toBe(3);
     expect(minHeap.toString()).toBe('3,5');
 
@@ -46,7 +47,7 @@ describe('MinHeap', () => {
 
   it('should poll items from the heap and heapify it down', () => {
     const minHeap = new MinHeap();
-
+    console.log('moonu');
     minHeap.add(5);
     minHeap.add(3);
     minHeap.add(10);
