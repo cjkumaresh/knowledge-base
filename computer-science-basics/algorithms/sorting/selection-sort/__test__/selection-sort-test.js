@@ -14,7 +14,7 @@ const REVERSE_SORTED_ARRAY_VISITING_COUNT = 209;
 const EQUAL_ARRAY_VISITING_COUNT = 209;
 
 describe('SelectionSort', () => {
-  it('should sort array', () => {
+  fit('should sort array', () => {
     SortTester.testSort(SelectionSort);
   });
 

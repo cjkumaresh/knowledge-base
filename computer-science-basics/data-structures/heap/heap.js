@@ -41,7 +41,8 @@ export default class Heap {
     return this.getParentIndex(currentIndex) >= 0;
   }
 
-  static getParentIndex(currentIndex) {
+  getParentIndex(currentIndex) {
+    console.log(this.heapContainer[currentIndex]);
     return Math.floor((currentIndex - 1) / 2);
   }
 
@@ -95,5 +96,13 @@ export default class Heap {
 
   swap(a, b) {
     [this.heapContainer[a], this.heapContainer[b]] = [this.heapContainer[b], this.heapContainer[a]]; // swap
+  }
+
+  static pairIsInCorrectOrder(a, b) {
+    throw new Error(`should be implemented for checking order for${a} and ${b}`);
+  }
+
+  toString() {
+    return this.heapContainer.toString();
   }
 }

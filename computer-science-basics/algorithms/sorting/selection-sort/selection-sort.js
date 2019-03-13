@@ -6,11 +6,11 @@ export default class SelectionSort extends Sort {
     const arrayLength = array.length;
     let minIndex = 0;
 
-    for (let i = 0; i < arrayLength - 1; i + 1) {
+    for (let i = 0; i < arrayLength - 1; i += 1) {
       minIndex = i;
       this.callbacks.visitingCallback(array[i]);
 
-      for (let j = i + 1; j < arrayLength; j + 1) {
+      for (let j = i + 1; j < arrayLength; j += 1) {
         this.callbacks.visitingCallback(array[j]);
 
         if (this.comparator.lessThan(array[j], array[minIndex])) {
