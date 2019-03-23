@@ -1,4 +1,3 @@
-import SelectionSort from '../selection-sort';
 import {
   equalArr,
   notSortedArr,
@@ -6,6 +5,7 @@ import {
   sortedArr,
   SortTester,
 } from '../../sort-tester';
+const SelectionSort = require('../selection-sort');
 
 // Complexity constants.
 const SORTED_ARRAY_VISITING_COUNT = 209;

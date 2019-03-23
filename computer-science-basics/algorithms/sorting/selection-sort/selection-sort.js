@@ -1,6 +1,6 @@
-import Sort from '../sort';
+const Sort = require('../sort');
 
-export default class SelectionSort extends Sort {
+class SelectionSort extends Sort {
   sort(originalArray) {
     const array = [...originalArray];
     const arrayLength = array.length;
@@ -27,3 +27,5 @@ export default class SelectionSort extends Sort {
     return array;
   }
 }
+
+module.exports = SelectionSort;

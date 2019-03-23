@@ -1,178 +1,176 @@
-import LinkedListNode from "./linked-list-node";
-import Comparator from "../../utils/comparator";
+const LinkedListNode = require('./linked-list-node');
+const Comparator = require('../../utils/comparator');
 
-export default class LinkedList {
-    constructor(comparatorFunction) {
-        this.head = null;
-        this.tail = null;
+class LinkedList {
+  constructor(comparatorFunction) {
+    this.head = null;
+    this.tail = null;
 
-        this.compare = new Comparator(comparatorFunction);
+    this.compare = new Comparator(comparatorFunction);
+  }
+
+  append(value) {
+    const newNode = new LinkedListNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+
+      return this;
     }
 
-    append(value) {
-        const newNode = new LinkedListNode(value);
-        if (!this.head) {
-            this.head = newNode;
-            this.tail = newNode;
+    this.tail.next = newNode; // append to the exisitng tail which is the last element
+    this.tail = newNode; // update the new tail
 
-            return this;
-        }
+    return this;
+  }
 
-        this.tail.next = newNode; // append to the exisitng tail which is the last element
-        this.tail = newNode; // update the new tail
+  prepend(value) {
+    const newNode = new LinkedListNode(value, this.head);
 
-        return this;
+    this.head = newNode; // update the new head
+
+    if (!this.tail) { // no tail means only one element is there, so head and tail are same
+      this.tail = newNode;
     }
 
-    prepend(value) {
-        const newNode = new LinkedListNode(value, this.head);
+    return this;
+  }
 
-        this.head = newNode; // update the new head
+  toArray() {
+    const nodes = [];
 
-        if (!this.tail) { // no tail means only one element is there, so head and tail are same
-            this.tail = newNode;
-        }
+    let currentNode = this.head;
 
-        return this;
+    while (currentNode) {
+      nodes.push(currentNode);
+      currentNode = currentNode.next;
     }
 
-    toArray() {
-        const nodes = [];
+    return nodes;
+  }
 
-        let currentNode = this.head;
+  fromArray(values = []) {
+    values.map(value => this.append(value));
+  }
 
-        while (currentNode) {
-            nodes.push(currentNode);
-            currentNode = currentNode.next;
-        }
+  toString(callback) {
+    return this.toArray().map(node => node.toString(callback)).toString();
+  }
 
-        return nodes;
+  delete(value) {
+    if (!this.head) {
+      return null;
     }
 
-    fromArray(values = []) {
-        values.map(value => this.append(value));
+    let deletedNode = null;
+
+    while (this.head && this.compare.equal(this.head.value, value)) {
+      deletedNode = this.head;
+      const newHead = this.head.next;
+      this.head = newHead;
     }
 
-    toString(callback) {
-        return this.toArray().map(node => node.toString(callback)).toString();
+    let currentNode = this.head;
+
+    while (currentNode && currentNode.next) {
+      if (this.compare.equal(currentNode.next.value, value)) {
+        deletedNode = currentNode.next;
+
+        if (!currentNode.next.next) { // to check if it is tail
+          currentNode.next = null;
+          this.tail = currentNode;
+          break;
+        }
+        currentNode.next = currentNode.next.next;
+      } else {
+        currentNode = currentNode.next;
+      }
+    }
+    return deletedNode;
+  }
+
+  find({ value = undefined, callback = undefined }) {
+    if (!this.head) {
+      return null;
+    }
+    let currentNode = this.head;
+
+    while (currentNode) {
+      if (callback && callback(currentNode.value)) {
+        return currentNode;
+      }
+
+      if (value !== undefined && this.compare.equal(currentNode.value, value)) {
+        return currentNode;
+      }
+
+      currentNode = currentNode.next;
     }
 
-    delete(value) {
-        if (!this.head) {
-            return null;
-        }
+    return null;
+  }
 
-        let deletedNode = null;
-
-        while (this.head && this.compare.equal(this.head.value, value)) {
-            deletedNode = this.head;
-            const newHead = this.head.next;
-            this.head = newHead;
-        }
-
-        let currentNode = this.head;
-
-        while (currentNode && currentNode.next) {
-            if (this.compare.equal(currentNode.next.value, value)) {
-                deletedNode = currentNode.next;
-
-                if (!currentNode.next.next) { // to check if it is tail
-                    currentNode.next = null;
-                    this.tail = currentNode;
-                    break;
-                }
-                currentNode.next = currentNode.next.next;
-                
-                
-            } else {
-                currentNode = currentNode.next;
-            }
-            
-        }
-        return deletedNode;
+  deleteHead() {
+    if (!this.head) {
+      return null;
     }
 
-    find ({value = undefined, callback = undefined}) {
-        if(!this.head) {
-            return null;
-        }
-        let currentNode = this.head;
+    const deletedNode = this.head;
 
-        while (currentNode) {
-
-            if (callback && callback(currentNode.value)) {
-                return currentNode;
-            }
-
-            if (value !== undefined && this.compare.equal(currentNode.value, value)) {
-                return currentNode;
-            }
-
-            currentNode = currentNode.next;
-        }
-
-        return null;
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else { // no tail
+      this.head = null;
+      this.tail = null;
     }
 
-    deleteHead() {
-        if (!this.head) {
-            return null;
-        }
+    return deletedNode;
+  }
 
-        const deletedNode = this.head;
+  deleteTail() {
+    const deletedNode = this.tail;
 
-        if (this.head.next) {
-            this.head = this.head.next;
-        } else { // no tail
-            this.head = null;
-            this.tail = null;
-        }
-
-        return deletedNode;
+    if (this.compare.equal(this.head, this.tail)) {
+      this.head = null;
+      this.tail = null;
+      return deletedNode;
     }
 
-    deleteTail() {
-        const deletedNode = this.tail;
+    let currentNode = this.head;
 
-        if (this.compare.equal(this.head, this.tail)) {
-            this.head = null;
-            this.tail = null;
-            return deletedNode;
-        }
-
-        let currentNode = this.head;
-
-        while(currentNode.next) {
-            if (!currentNode.next.next) {
-                currentNode.next = null;
-            } else {
-                currentNode = currentNode.next;
-            }
-        }
-
-        this.tail = currentNode;
-
-        return deletedNode;
+    while (currentNode.next) {
+      if (!currentNode.next.next) {
+        currentNode.next = null;
+      } else {
+        currentNode = currentNode.next;
+      }
     }
 
-    reverse() {
-        let currentNode = this.head;
+    this.tail = currentNode;
 
-        let previousNode = null;
-        let nextNode = currentNode.next;
+    return deletedNode;
+  }
 
-        while(currentNode) {
-            // 1 -> 2 -> 3 ->
-            // Assume currentNode = 2. now
-            nextNode = currentNode.next; // store the next node (3), so nextNode = 3
+  reverse() {
+    let currentNode = this.head;
 
-            currentNode.next = previousNode; // 1
+    let previousNode = null;
+    let nextNode = currentNode.next;
 
-            previousNode = currentNode; // update previousNode , so previousNode = 2
-            currentNode = nextNode; // update currentNode for the iteration; so currentNode = 2
-        }
-        
-        this.tail = this.head;
-        this.head = previousNode;
+    while (currentNode) {
+      // 1 -> 2 -> 3 ->
+      // Assume currentNode = 2. now
+      nextNode = currentNode.next; // store the next node (3), so nextNode = 3
+
+      currentNode.next = previousNode; // 1
+
+      previousNode = currentNode; // update previousNode , so previousNode = 2
+      currentNode = nextNode; // update currentNode for the iteration; so currentNode = 2
     }
+
+    this.tail = this.head;
+    this.head = previousNode;
+  }
 }
+
+module.exports = LinkedList;

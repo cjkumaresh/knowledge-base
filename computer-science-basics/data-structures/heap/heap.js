@@ -1,6 +1,6 @@
-import Comparator from '../../utils/comparator';
+const Comparator = require('../../utils/comparator');
 
-export default class Heap {
+class Heap {
   constructor(comparator) {
     if (new.target === Heap) {
       return TypeError('Cannot instantiate Heap class directly');
@@ -163,3 +163,5 @@ export default class Heap {
     return this.heapContainer.toString();
   }
 }
+
+module.exports = Heap;

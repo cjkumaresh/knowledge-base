@@ -1,5 +1,5 @@
-import MaxHeap from '../max-heap';
-import Comparator from '../../../utils/comparator';
+const MaxHeap = require('../max-heap');
+const Comparator = require('../../../utils/comparator');
 
 describe('MaxHeap', () => {
   it('should create an empty max heap', () => {

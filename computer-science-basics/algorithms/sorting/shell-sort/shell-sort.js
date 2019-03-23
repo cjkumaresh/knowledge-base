@@ -1,6 +1,6 @@
-import Sort from '../sort';
+const Sort = require('../sort');
 
-export default class ShellSort extends Sort {
+class ShellSort extends Sort {
   sort(originalArray) {
     const array = [...originalArray]; // 1. clone the array
 
@@ -28,3 +28,5 @@ export default class ShellSort extends Sort {
     return array;
   }
 }
+
+module.exports = ShellSort;

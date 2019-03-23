@@ -1,4 +1,4 @@
-import LinkedList from '../linked-list';
+const LinkedList = require('../linked-list');
 
 describe('LinkedList', () => {
   it('should create empty linked list', () => {
@@ -154,19 +154,19 @@ describe('LinkedList', () => {
   it('should find node by value', () => {
     const linkedList = new LinkedList();
 
-    expect(linkedList.find({value: 5})).toBeNull();
+    expect(linkedList.find({ value: 5 })).toBeNull();
 
     linkedList.append(1);
-    expect(linkedList.find({value: 1})).toBeDefined();
+    expect(linkedList.find({ value: 1 })).toBeDefined();
 
     linkedList
       .append(2)
       .append(3);
 
-    const node = linkedList.find({value: 2});
+    const node = linkedList.find({ value: 2 });
 
     expect(node.value).toBe(2);
-    expect(linkedList.find({value: 5})).toBeNull();
+    expect(linkedList.find({ value: 5 })).toBeNull();
   });
 
   it('should find node by callback', () => {

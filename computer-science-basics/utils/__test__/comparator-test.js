@@ -1,6 +1,6 @@
-import Comparator from "../comparator";
+const Comparator = require('../comparator');
 
-describe('Comparator', () => {
+fdescribe('Comparator', () => {
   it('should compare with default comparator function', () => {
     const comparator = new Comparator();
 
