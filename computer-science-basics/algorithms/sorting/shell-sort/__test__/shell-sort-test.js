@@ -1,4 +1,4 @@
-import ShellSort from '../shell-sort';
+const ShellSort = require('../shell-sort');
 import {
   equalArr,
   notSortedArr,

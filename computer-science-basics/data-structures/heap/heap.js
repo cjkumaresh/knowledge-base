@@ -45,16 +45,15 @@ class Heap {
     return this.heapContainer[Heap.getRightChildIndex(index)];
   }
 
-  hasParent(currentIndex) {
-    return this.getParentIndex(currentIndex) >= 0;
+  static hasParent(currentIndex) {
+    return Heap.getParentIndex(currentIndex) >= 0;
   }
 
   parent(index) {
-    return this.heapContainer[this.getParentIndex(index)];
+    return this.heapContainer[Heap.getParentIndex(index)];
   }
 
-  getParentIndex(currentIndex) {
-    console.log(this.heapContainer[currentIndex]);
+  static getParentIndex(currentIndex) {
     return Math.floor((currentIndex - 1) / 2);
   }
 
@@ -83,10 +82,9 @@ class Heap {
   heapifyUp(index) {
     let currentIndex = index || this.heapContainer.length - 1;
 
-    while (this.hasParent(currentIndex)
+    while (Heap.hasParent(currentIndex)
         && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])) {
-      console.log('checking ', currentIndex);
-      const parentIndex = this.getParentIndex(currentIndex);
+      const parentIndex = Heap.getParentIndex(currentIndex);
       this.swap(currentIndex, parentIndex);
       currentIndex = parentIndex;
     }
@@ -114,44 +112,44 @@ class Heap {
   }
 
   swap(a, b) {
-    // [this.heapContainer[a], this.heapContainer[b]] = [this.heapContainer[b], this.heapContainer[a]]; // swap
-    const tmp = this.heapContainer[b];
-    this.heapContainer[b] = this.heapContainer[a];
-    this.heapContainer[a] = tmp;
+    [this.heapContainer[a], this.heapContainer[b]] = [this.heapContainer[b], this.heapContainer[a]]; // swap
+    // const tmp = this.heapContainer[b];
+    // this.heapContainer[b] = this.heapContainer[a];
+    // this.heapContainer[a] = tmp;
   }
 
   static pairIsInCorrectOrder(a, b) {
     throw new Error(`should be implemented for checking order for${a} and ${b}`);
   }
 
-  // remove(item, comparator = this.compare) {
-  //   const itemIndicesToRemove = this.find(item, comparator);
+  remove(item, comparator = this.compare) {
+    const itemIndicesToRemove = this.find(item, comparator);
 
-  //   for (let i = 0; i < itemIndicesToRemove.length - 1; i = 1 + 1) {
-  //     const indexToRemove = itemIndicesToRemove.pop();
+    for (let i = 0; i < itemIndicesToRemove.length - 1; i = 1 + 1) {
+      const indexToRemove = itemIndicesToRemove.pop();
 
-  //     // if the item to be remove is the last item then just popping the last element is enough
-  //     if (indexToRemove === (this.heapContainer.length - 1)) {
-  //       this.heapContainer.pop();
-  //     } else {
-  //       this.heapContainer[indexToRemove] = this.heapContainer.pop();
+      // if the item to be remove is the last item then just popping the last element is enough
+      if (indexToRemove === (this.heapContainer.length - 1)) {
+        this.heapContainer.pop();
+      } else {
+        this.heapContainer[indexToRemove] = this.heapContainer.pop();
 
-  //       const parent = this.parent(indexToRemove);
-  //       if (this.hasLeftChild(indexToRemove)
-  //         && (!parent || this.pairIsInCorrectOrder(parent, this.heapContainer(indexToRemove)))) {
-  //         this.heapifyDown(indexToRemove);
-  //       } else {
-  //         this.heapifyUp(indexToRemove);
-  //       }
-  //     }
-  //   }
-  //   return this;
-  // }
+        const parent = this.parent(indexToRemove);
+        if (this.hasLeftChild(indexToRemove)
+          && (!parent || this.pairIsInCorrectOrder(parent, this.heapContainer(indexToRemove)))) {
+          this.heapifyDown(indexToRemove);
+        } else {
+          this.heapifyUp(indexToRemove);
+        }
+      }
+    }
+    return this;
+  }
 
   find(item, comparator = this.compare) {
     const foundItemIndices = [];
 
-    for (let i = 0; i < this.heapContainer.length; i = 1 + 1) {
+    for (let i = 0; i < this.heapContainer.length; i += 1) {
       if (comparator.equal(item, this.heapContainer[i])) {
         foundItemIndices.push(i);
       }
