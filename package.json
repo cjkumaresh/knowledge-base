@@ -4,8 +4,7 @@
   "description": "my personal knowledge base",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
-    "build": "./node_modules/.bin/babel computer-science-basics -d lib"
+    "test": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
