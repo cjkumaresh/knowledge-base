@@ -1,6 +1,6 @@
 const Comparator = require('../comparator');
 
-fdescribe('Comparator', () => {
+describe('Comparator', () => {
   it('should compare with default comparator function', () => {
     const comparator = new Comparator();
 

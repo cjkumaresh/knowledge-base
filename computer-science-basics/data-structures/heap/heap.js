@@ -30,11 +30,11 @@ class Heap {
   }
 
   static getLeftChildIndex(index) {
-    return (index * 2) + 1;
+    return index * 2 + 1;
   }
 
   static getRightChildIndex(index) {
-    return (index * 2) + 2;
+    return index * 2 + 2;
   }
 
   leftChild(index) {
@@ -82,8 +82,10 @@ class Heap {
   heapifyUp(index) {
     let currentIndex = index || this.heapContainer.length - 1;
 
-    while (Heap.hasParent(currentIndex)
-        && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])) {
+    while (
+      Heap.hasParent(currentIndex)
+      && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
+    ) {
       const parentIndex = Heap.getParentIndex(currentIndex);
       this.swap(currentIndex, parentIndex);
       currentIndex = parentIndex;
@@ -95,8 +97,10 @@ class Heap {
 
     let nextIndex = null;
     while (this.hasLeftChild(currentIndex)) {
-      if (this.hasRightChild(currentIndex)
-        && this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))) {
+      if (
+        this.hasRightChild(currentIndex)
+        && this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))
+      ) {
         nextIndex = Heap.getRightChildIndex(currentIndex);
       } else {
         nextIndex = Heap.getLeftChildIndex(currentIndex);
@@ -124,19 +128,20 @@ class Heap {
 
   remove(item, comparator = this.compare) {
     const itemIndicesToRemove = this.find(item, comparator);
-
-    for (let i = 0; i < itemIndicesToRemove.length - 1; i = 1 + 1) {
-      const indexToRemove = itemIndicesToRemove.pop();
+    for (let i = 0; i < itemIndicesToRemove.length; i += 1) {
+      const indexToRemove = this.find(item, comparator).pop();
 
       // if the item to be remove is the last item then just popping the last element is enough
-      if (indexToRemove === (this.heapContainer.length - 1)) {
+      if (indexToRemove === this.heapContainer.length - 1) {
         this.heapContainer.pop();
       } else {
         this.heapContainer[indexToRemove] = this.heapContainer.pop();
 
         const parent = this.parent(indexToRemove);
-        if (this.hasLeftChild(indexToRemove)
-          && (!parent || this.pairIsInCorrectOrder(parent, this.heapContainer(indexToRemove)))) {
+        if (
+          this.hasLeftChild(indexToRemove)
+          && (!parent || this.pairIsInCorrectOrder(parent, this.heapContainer[indexToRemove]))
+        ) {
           this.heapifyDown(indexToRemove);
         } else {
           this.heapifyUp(indexToRemove);

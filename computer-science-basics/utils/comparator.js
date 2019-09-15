@@ -8,7 +8,7 @@ class Comparator {
       return 0;
     }
 
-    return (a < b) ? -1 : 1;
+    return a < b ? -1 : 1;
   }
 
   equal(a, b) {
@@ -37,6 +37,3 @@ class Comparator {
 }
 
 module.exports = Comparator;
-
-const comparator = new Comparator();
-console.log(comparator.equal(0, 0));
