@@ -1,4 +1,4 @@
-import Sort from '../Sort';
+import Sort from '../sort';
 
 describe('Sort', () => {
   it('should throw an error when trying to call Sort.sort() method directly', () => {
